@@ -1,0 +1,28 @@
+@import url('variables.css');
+@import url('https://fonts.googleapis.com/css2?family=Passion+One&display=swap');
+
+body {
+  background-color: var(--background-color);
+  color: var(--white-color);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.main {
+  margin-top: 8px;
+  padding-bottom: 50px;
+}
+
+.container {
+  max-width: 405px;
+  margin: 0 auto;
+}
+
+.decor {
+  position: fixed;
+  left: 0;
+  top: 135px;
+  img {
+    width: 100%;
+  }
+}

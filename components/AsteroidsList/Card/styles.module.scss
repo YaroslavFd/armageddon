@@ -1,0 +1,65 @@
+.wrapper {
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .date {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .distance {
+      max-width: 125px;
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        text-align: center;
+
+        svg {
+          width: 100%;
+          height: 6px;
+        }
+      }
+    }
+
+    .asteroid {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .box {
+        p {
+          text-decoration-line: underline;
+          font-weight: 700;
+        }
+
+        span {
+          display: block;
+          margin-top: 3px;
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .dangerous {
+      color: #e3e5e5;
+      font-size: 14px;
+    }
+  }
+}

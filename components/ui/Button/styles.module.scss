@@ -1,0 +1,46 @@
+.button {
+  cursor: pointer;
+  user-select: none;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 40px;
+  background-color: transparent;
+  color: var(--white-color);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 700;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &.accent {
+    background-color: var(--accent-color);
+
+    &:hover {
+      background-color: var(--accent-hover-color);
+    }
+  }
+
+  &.accentDull {
+    padding: 2px 11px;
+    text-transform: uppercase;
+    background-color: var(--accent-smooth-color);
+    font-size: 11px;
+    line-height: 20px;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+
+    &:hover {
+      background-color: var(--accent-color);
+      color: var(--white-color);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+    user-select: none;
+  }
+}
