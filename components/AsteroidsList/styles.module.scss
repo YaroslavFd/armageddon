@@ -11,12 +11,21 @@
     line-height: 36px;
   }
 
-  .smallInfo {
-    font-weight: 700;
-
-    span {
-      font-weight: 400;
+  .switches {
+    button {
+      cursor: pointer;
+      border: 0;
+      background-color: transparent;
       text-decoration: underline;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--white-color);
+
+      &.active {
+        font-weight: 700;
+        text-decoration: none;
+      }
     }
   }
 }
