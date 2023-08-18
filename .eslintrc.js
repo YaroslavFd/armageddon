@@ -30,6 +30,7 @@ module.exports = {
   plugins: ['@next/eslint-plugin-next'],
   rules: {
     '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/consistent-type-imports': [

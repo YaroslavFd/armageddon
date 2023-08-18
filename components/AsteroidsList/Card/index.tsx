@@ -1,39 +1,50 @@
+'use client';
+
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import type { SwitchButtonType } from '@/components/AsteroidsList';
 import { Button } from '@/components/ui/Button';
-import { useCardData } from '@/utils/hooks/useCardData';
 
 import styles from './styles.module.scss';
 
-export type DiameterType = {
-  estimated_diameter_min: number;
-  estimated_diameter_max: number;
-};
-
 interface CardProps {
+  id: string;
   name: string;
-  diameter: DiameterType;
-  closeApproachDatum: CloseApproachDatum[];
+  diameter: number;
   dangerous: boolean;
-  activeBtn: SwitchButtonType;
+  distance: string;
+  formattedDate: string;
 }
 
-export const Card = ({ name, diameter, closeApproachDatum, dangerous, activeBtn }: CardProps) => {
-  const cardData = useCardData({
-    activeBtn,
-    closeApproachDatum,
-    diameter
-  });
+const BIG_DIAMETER = 10000;
+
+export const Card = ({ id, name, diameter, dangerous, distance, formattedDate }: CardProps) => {
+  const pathname = usePathname();
+
+  const onClickAdd = () => {
+    const newItem: CardItem = {
+      dangerous,
+      diameter,
+      distance,
+      formattedDate,
+      id,
+      name
+    };
+
+    const existingItemsJSON = localStorage.getItem('cartItems');
+    const existingItems = existingItemsJSON ? JSON.parse(existingItemsJSON) : [];
+    existingItems.push(newItem);
+    localStorage.setItem('cartItems', JSON.stringify(existingItems));
+  };
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.date}>{cardData.formattedDate}</div>
+      <div className={styles.date}>{formattedDate}</div>
       <div className={styles.info}>
         <div className={styles.distance}>
           <div>
-            <span>{cardData.distance}</span>
+            <span>{distance}</span>
             <svg fill='none' viewBox='0 0 105 6' xmlns='http://www.w3.org/2000/svg'>
               <path
                 d='M0 3L5 5.88675L5 0.113249L0 3ZM105 3.00001L100 0.113257L100 5.88676L105 3.00001ZM4.5 3.5L100.5 3.50001L100.5 2.50001L4.5 2.5L4.5 3.5Z'
@@ -46,19 +57,21 @@ export const Card = ({ name, diameter, closeApproachDatum, dangerous, activeBtn 
         <div className={styles.asteroid}>
           <Image
             alt='asteroid'
-            height={cardData.diameterNum > 10000 ? 40 : 24}
+            height={diameter > BIG_DIAMETER ? 40 : 24}
             src='/asteroid.png'
-            width={cardData.diameterNum > 10000 ? 37 : 22}
+            width={diameter > BIG_DIAMETER ? 37 : 22}
           />
           <div className={styles.box}>
             <p>{name}</p>
-            <span>Ø {cardData.diameterNum} м</span>
+            <span>Ø {diameter} м</span>
           </div>
         </div>
       </div>
 
       <div className={styles.bottom}>
-        <Button appearance='accent-dull' text='Заказать' />
+        {pathname !== '/cart' && (
+          <Button appearance='accent-dull' text='Заказать' onClick={onClickAdd} />
+        )}
         {dangerous && (
           <div className={styles.dangerous}>
             <span>⚠️</span> Опасен

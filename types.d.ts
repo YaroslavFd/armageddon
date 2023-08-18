@@ -108,3 +108,12 @@ interface Page {
   total_pages: number;
   number: number;
 }
+
+interface CardItem {
+  id: string;
+  diameter: number;
+  distance: string;
+  dangerous: boolean;
+  formattedDate: string;
+  name: string;
+}

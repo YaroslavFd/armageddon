@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { getCardData } from '@/utils/helpers/getCardData';
+
 import { Card } from './Card';
 import styles from './styles.module.scss';
 
@@ -37,16 +39,25 @@ export const AsteroidsList = ({ asteroids }: AsteroidsListProps) => {
         </div>
       </div>
       {!isArrayEmpty ? (
-        asteroids.map((asteroid) => (
-          <Card
-            key={asteroid.id}
-            activeBtn={activeBtn}
-            closeApproachDatum={asteroid.close_approach_data}
-            dangerous={asteroid.is_potentially_hazardous_asteroid}
-            diameter={asteroid.estimated_diameter.meters}
-            name={asteroid.name_limited}
-          />
-        ))
+        asteroids.map((asteroid) => {
+          const cardData = getCardData({
+            activeBtn,
+            closeApproachDatum: asteroid.close_approach_data,
+            diameter: asteroid.estimated_diameter.meters
+          });
+
+          return (
+            <Card
+              key={asteroid.id}
+              dangerous={asteroid.is_potentially_hazardous_asteroid}
+              diameter={cardData.diameterNum}
+              distance={cardData.distance}
+              formattedDate={cardData.formattedDate}
+              id={asteroid.id}
+              name={asteroid.name_limited}
+            />
+          );
+        })
       ) : (
         <h3>Список астероидов пуст</h3>
       )}

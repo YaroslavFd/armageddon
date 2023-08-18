@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  h2 {
+    align-self: stretch;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+  }
+}

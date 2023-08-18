@@ -1,9 +1,13 @@
 import type { SwitchButtonType } from '@/components/AsteroidsList';
-import type { DiameterType } from '@/components/AsteroidsList/Card';
 
-import { findClosestDate } from '../helpers/findClosestDate';
-import { formatDate } from '../helpers/formatDate';
-import { formatOrbits } from '../helpers/formatOrbits';
+import { findClosestDate } from './findClosestDate';
+import { formatDate } from './formatDate';
+import { formatOrbits } from './formatOrbits';
+
+type DiameterType = {
+  estimated_diameter_min: number;
+  estimated_diameter_max: number;
+};
 
 interface CardDataProps {
   diameter: DiameterType;
@@ -11,7 +15,7 @@ interface CardDataProps {
   activeBtn: SwitchButtonType;
 }
 
-export const useCardData = ({ diameter, closeApproachDatum, activeBtn }: CardDataProps) => {
+export const getCardData = ({ diameter, closeApproachDatum, activeBtn }: CardDataProps) => {
   const diameterNum = Math.floor(
     (diameter.estimated_diameter_min + diameter.estimated_diameter_max) / 2
   );
