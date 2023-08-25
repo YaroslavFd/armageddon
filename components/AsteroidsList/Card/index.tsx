@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
@@ -62,7 +63,7 @@ export const Card = ({ id, name, diameter, dangerous, distance, formattedDate }:
             </svg>
           </div>
         </div>
-        <div className={styles.asteroid}>
+        <Link className={styles.asteroid} href={`/asteroid/${id}`}>
           <Image
             alt='asteroid'
             height={diameter > BIG_DIAMETER ? 40 : 24}
@@ -73,7 +74,7 @@ export const Card = ({ id, name, diameter, dangerous, distance, formattedDate }:
             <p>{name}</p>
             <span>Ø {diameter} м</span>
           </div>
-        </div>
+        </Link>
       </div>
 
       <div className={styles.bottom}>
