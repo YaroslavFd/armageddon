@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import { Button } from '@/components/ui/Button';
+import { useCartInfoStore } from '@/store/cartInfo';
+import { getCartItemsFromLocalStorage } from '@/utils/helpers/getCartItemsFromLocalStorage';
 
 import styles from './styles.module.scss';
 
@@ -20,9 +22,17 @@ interface CardProps {
 const BIG_DIAMETER = 10000;
 
 export const Card = ({ id, name, diameter, dangerous, distance, formattedDate }: CardProps) => {
+  const items = getCartItemsFromLocalStorage();
+  const itemInCart = !!items.filter((item) => item.id === id).length;
+
+  const [inCart, setInCart] = React.useState(itemInCart);
   const pathname = usePathname();
 
+  const addItem = useCartInfoStore((state) => state.addItem);
+
   const onClickAdd = () => {
+    if (inCart) return;
+
     const newItem: CardItem = {
       dangerous,
       diameter,
@@ -32,10 +42,8 @@ export const Card = ({ id, name, diameter, dangerous, distance, formattedDate }:
       name
     };
 
-    const existingItemsJSON = localStorage.getItem('cartItems');
-    const existingItems = existingItemsJSON ? JSON.parse(existingItemsJSON) : [];
-    existingItems.push(newItem);
-    localStorage.setItem('cartItems', JSON.stringify(existingItems));
+    addItem(newItem);
+    setInCart(true);
   };
 
   return (
@@ -70,7 +78,12 @@ export const Card = ({ id, name, diameter, dangerous, distance, formattedDate }:
 
       <div className={styles.bottom}>
         {pathname !== '/cart' && (
-          <Button appearance='accent-dull' text='Заказать' onClick={onClickAdd} />
+          <Button
+            appearance='accent-dull'
+            className={inCart ? styles.inCart : ''}
+            text={inCart ? 'В корзине' : 'Заказать'}
+            onClick={onClickAdd}
+          />
         )}
         {dangerous && (
           <div className={styles.dangerous}>
