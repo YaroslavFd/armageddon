@@ -1,14 +1,25 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import { Card } from '@/components/AsteroidsList/Card';
+import { Button } from '@/components/ui/Button';
+import { useCartInfoStore } from '@/store/cartInfo';
 import { getCartItemsFromLocalStorage } from '@/utils/helpers/getCartItemsFromLocalStorage';
 
 import styles from './page.module.scss';
 
 export const CartPage = () => {
+  const router = useRouter();
+
   const cartItems = getCartItemsFromLocalStorage();
+  const resetCart = useCartInfoStore((state) => state.resetCart);
+
+  const onClickBtn = () => {
+    resetCart();
+    router.push('/');
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -24,6 +35,8 @@ export const CartPage = () => {
           name={item.name}
         />
       ))}
+
+      {!!cartItems.length && <Button text='Очистить корзину' onClick={onClickBtn} />}
     </div>
   );
 };

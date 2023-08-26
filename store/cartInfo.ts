@@ -6,6 +6,7 @@ import { getCartItemsFromLocalStorage } from '@/utils/helpers/getCartItemsFromLo
 interface CartInfoStoreProps {
   quantity: number;
   addItem: (newItem: CardItem) => void;
+  resetCart: () => void;
 }
 
 export const useCartInfoStore = create<CartInfoStoreProps>((set) => ({
@@ -13,7 +14,6 @@ export const useCartInfoStore = create<CartInfoStoreProps>((set) => ({
 
   addItem: (newItem: CardItem) =>
     set(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       produce((state) => {
         const existingItemsJSON = localStorage.getItem('cartItems');
         const existingItems = existingItemsJSON ? JSON.parse(existingItemsJSON) : [];
@@ -21,6 +21,14 @@ export const useCartInfoStore = create<CartInfoStoreProps>((set) => ({
         localStorage.setItem('cartItems', JSON.stringify(existingItems));
 
         state.quantity += 1;
+      })
+    ),
+
+  resetCart: () =>
+    set(
+      produce((state) => {
+        localStorage.removeItem('cartItems');
+        state.quantity = 0;
       })
     )
 }));
