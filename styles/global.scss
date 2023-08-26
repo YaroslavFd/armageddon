@@ -9,8 +9,12 @@ body {
 }
 
 .main {
-  margin-top: 8px;
+  margin-top: 10px;
   padding-bottom: 50px;
+
+  @media (max-width: 567px) {
+    margin-top: 16px;
+  }
 }
 
 .container {
@@ -21,9 +25,35 @@ body {
 
 .decor {
   position: fixed;
+  z-index: -1;
   left: 0;
   top: 135px;
   img {
     width: 100%;
+
+    @media (max-width: 1300px) {
+      width: 377px;
+      height: 436px;
+    }
+  }
+
+  @media (max-width: 1300px) {
+    left: -65px;
+  }
+
+  @media (max-width: 992px) {
+    left: -170px;
+  }
+
+  @media (max-width: 767px) {
+    left: -200px;
+  }
+
+  @media (max-width: 567px) {
+    left: -285px;
+  }
+
+  @media (max-width: 375px) {
+    left: -310px;
   }
 }

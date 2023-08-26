@@ -1,8 +1,30 @@
 .wrapper {
   position: relative;
+  z-index: 10;
+
+  @media (max-width: 767px) {
+    margin: 0 auto;
+    max-width: 285px;
+  }
+
+  @media (max-width: 567px) {
+    padding-bottom: 80px;
+  }
 
   .cartBox {
     position: fixed;
+    z-index: 15;
     transform: translateX(405px);
+
+    @media (max-width: 767px) {
+      transform: translateX(270px);
+    }
+
+    @media (max-width: 567px) {
+      transform: translateX(0);
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
   }
 }

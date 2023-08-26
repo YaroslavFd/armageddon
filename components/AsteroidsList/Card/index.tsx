@@ -54,9 +54,15 @@ export const Card = ({ id, name, diameter, dangerous, distance, formattedDate }:
         <div className={styles.distance}>
           <div>
             <span>{distance}</span>
-            <svg fill='none' viewBox='0 0 105 6' xmlns='http://www.w3.org/2000/svg'>
+            <svg
+              fill='none'
+              height='6'
+              viewBox='0 0 129 6'
+              width='129'
+              xmlns='http://www.w3.org/2000/svg'
+            >
               <path
-                d='M0 3L5 5.88675L5 0.113249L0 3ZM105 3.00001L100 0.113257L100 5.88676L105 3.00001ZM4.5 3.5L100.5 3.50001L100.5 2.50001L4.5 2.5L4.5 3.5Z'
+                d='M0 3L5 5.88675L5 0.113249L0 3ZM129 3.00001L124 0.113259L124 5.88676L129 3.00001ZM4.5 3.5L124.5 3.50001L124.5 2.50001L4.5 2.5L4.5 3.5Z'
                 fill='white'
                 fillOpacity='0.5'
               />
