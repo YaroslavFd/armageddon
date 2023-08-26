@@ -28,3 +28,31 @@
     }
   }
 }
+
+.statusWrapper {
+  height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  .notFound {
+    @media (max-width: 992px) {
+      width: 300px;
+      height: 300px;
+    }
+
+    @media (max-width: 567px) {
+      width: 250px;
+      height: 250px;
+    }
+  }
+}
