@@ -1,13 +1,14 @@
 .wrapper {
   padding: 16px;
-  max-width: 310px;
+  max-width: 335px;
 
-  a {
+  .logo {
     font-family: 'Passion One', cursive;
     text-transform: uppercase;
     color: var(--accent-color);
     text-decoration: none;
-    font-size: 32px;
+    font-size: 28px;
+    font-weight: 700;
   }
 
   p {
