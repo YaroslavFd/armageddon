@@ -22,7 +22,7 @@ https://armageddon-psi.vercel.app/
 - A shopping cart with a list of asteroids they want to destroy
 - A detailed page for each asteroid
 
-###API
+### API
 
 https://api.nasa.gov Asteroids - NeoWs
 
