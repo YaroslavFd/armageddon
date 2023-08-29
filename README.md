@@ -26,16 +26,21 @@ https://armageddon-psi.vercel.app/
 
 https://api.nasa.gov Asteroids - NeoWs
 
-## Getting Started
-
-First, run the development server:
+## How To Use
 
 ```bash
+# Clone the repository
+git clone https://github.com/YaroslavFd/armageddon.git
+
+# Install dependencies
+npm i
+# or
+yarn
+
+# Run the development server
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
